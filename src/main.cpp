@@ -122,11 +122,11 @@ int main() {
             input_state.car_d = car_d;
             input_state.car_yaw = car_yaw;
             input_state.car_speed = car_speed;
-            input_state.previous_path_x = previous_path_x;
-            input_state.previous_path_y = previous_path_y;
+            input_state.previous_path_x = previous_path_x.get<vector<double>>();
+            input_state.previous_path_y = previous_path_y.get<vector<double>>();
             input_state.end_path_s = end_path_s;
             input_state.end_path_d = end_path_d;
-            input_state.sensor_fusion = sensor_fusion;
+            input_state.sensor_fusion = sensor_fusion.get<vector<vector<double>>>();
 
             input_state.map_waypoints_x = map_waypoints_x;
             input_state.map_waypoints_y = map_waypoints_y;
