@@ -83,7 +83,13 @@ bool PathPlanner::SelectLane(const InputState& input_state)
                 continue;
             if (fabs(sdiff) > m_safe_gap)
                 continue;
-            if (fabs(input_state.car_s - target[5]) < m_safe_gap) {
+            if (target[5] - input_state.car_s > 0
+                    && target[5] - input_state.car_s < m_safe_gap) {
+                min_s[lane_relation + 1] = 0;
+                speed_limit[lane_relation + 1] = 0;
+                continue;
+            }
+            if (fabs(sdiff) < m_safe_gap / 2) {
                 min_s[lane_relation + 1] = 0;
                 speed_limit[lane_relation + 1] = 0;
                 continue;
@@ -118,7 +124,7 @@ bool PathPlanner::SelectLane(const InputState& input_state)
             dlane = i;
         }
     }
-    if (dlane != 0 && input_state.car_speed > 40) {
+    if (dlane != 0 && input_state.car_speed > 30) {
         m_heading_lane += dlane;
         m_changing_state = true;
     }
