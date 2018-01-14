@@ -40,8 +40,16 @@ public:
             std::vector<double>& next_x_vals, std::vector<double>& next_y_vals);
 
 private:
-    double m_ref_v;
+    int LaneNumOf(double d);
+    int LaneRelationBetween(double current_d, double target_d);
+    bool IsChangingLane(const InputState& input_state);
+    bool SelectLane(const InputState& input_state);
 
+private:
+    int m_changing_state;
+    int m_heading_lane;
+    double m_ref_v;
+    double m_safe_gap;
 };
 
 #endif

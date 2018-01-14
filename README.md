@@ -1,6 +1,25 @@
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
-   
+
+
+## Reflection
+
+### Path Points
+
+The path points generation strategy is almost the same with the methods in
+project walkthrough video. First the planner pick three future way points
+together with current and previous way point to fit a spline trajectory. Then
+the planner will apply the spline trajectory to get steps for next 30 meters.
+
+### Lane Changing
+
+I maintain two states in the planner: changing lane state and non-changing lane
+state. While the car is not changing lane, the planner will check the sensor
+fusions of current and neighbor lanes. Next, if the car in the front moves
+slowly and no cars in neighbor would cause collision, the planner will choose a
+lane with higher speed limit as a target lane. Most of the time the planner
+would choose to stay in lane with higher priority.
+
 ### Simulator.
 You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases).
 
